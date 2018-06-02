@@ -2,7 +2,9 @@ package com.example.mello.myapplication;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 public class GoreserActivity extends AppCompatActivity{
@@ -39,5 +41,12 @@ public class GoreserActivity extends AppCompatActivity{
                 android.R.layout.simple_spinner_dropdown_item);
         spinner4.setAdapter(adapter4);
 
+
+        Button btn_reserve = (Button)findViewById(R.id.btn_reserve);
+        btn_reserve.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+
+            }
+        });
     }
 }

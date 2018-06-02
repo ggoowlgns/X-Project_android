@@ -62,4 +62,13 @@
         android:drawSelectorOnTop="True"
         android:prompt="@string/end_prompt"
         />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="예약하기"
+        android:id="@+id/btn_reserve"
+        android:layout_below="@+id/mySpinner4"
+        />
 </LinearLayout>
