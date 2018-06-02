@@ -10,6 +10,7 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.example.mello.myapplication.Network.LoginTask;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,14 +42,13 @@ public class MainActivity extends AppCompatActivity {
                     if (elapsedTime <= MIN_CLICK_INTERVAL) {
                         return;
                     }
-                    LoginTask loginTask = new LoginTask(MainActivity.this);
+
                     Map<String, String> params = new HashMap<>();
                     params.put("id", id);
                     params.put("passwd", pw);
+                    LoginTask loginTask = new LoginTask(MainActivity.this,params);
                     loginTask.execute(params);
 
-//                    Intent intent_join = new Intent(MainActivity.this, SubActivity.class);
-//                   startActivity(intent_join);
                 }
             }
         });

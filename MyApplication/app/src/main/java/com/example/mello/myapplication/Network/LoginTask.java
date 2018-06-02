@@ -33,7 +33,7 @@ public class LoginTask extends AsyncTask <Map<String, String>, Integer, String>{
     protected String doInBackground(Map<String, String>... maps) { // 내가 전송하고 싶은 파라미터
 
 // Http 요청 준비 작업
-        HttpClient.Builder http = new HttpClient.Builder("POST", Constants.isaAddr+"member/login");
+        HttpClient.Builder http = new HttpClient.Builder("POST", Constants.isaAddr+"members/login");
 
 // Parameter 를 전송한다.
         http.addAllParameters(maps[0]);
@@ -61,9 +61,9 @@ public class LoginTask extends AsyncTask <Map<String, String>, Integer, String>{
         if(s.trim().equals("")) {
             Toast.makeText(context, "회원 정보가 없거나 일치하지 않습니다.", Toast.LENGTH_LONG).show();
         }else {
+
             try {
-                JSONObject obj = new JSONObject(s);
-                int auth = obj.getInt("auth");
+                Log.i("in","sd");
 
                 //자동로그인 등록
                 SharedPreferences sharedPreferences = context.getSharedPreferences("loginInfo", 0);

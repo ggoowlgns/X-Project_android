@@ -42,5 +42,11 @@ public class GoreserActivity extends AppCompatActivity{
         spinner4.setAdapter(adapter4);
 
 
+        Button btn_reserve = (Button)findViewById(R.id.btn_reserve);
+        btn_reserve.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+
+            }
+        });
     }
 }

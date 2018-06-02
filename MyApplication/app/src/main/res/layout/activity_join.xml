@@ -59,12 +59,8 @@
                 android:background="@drawable/gray_background"
                 android:ems="10"
                 android:hint="이름"
-<<<<<<< HEAD
-                android:inputType="textPersonName"
-=======
-                android:inputType="textPassword"
->>>>>>> bdc8e9bb9f9f982431156e9804a33cefa09b1f65
-                android:padding="5dp" />
+
+                android:inputType="textPersonName" />
 
             <EditText
                 android:id="@+id/signPhone"
