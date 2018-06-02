@@ -70,23 +70,22 @@ public class SplashActivity extends AppCompatActivity {
 
 
                 SharedPreferences sharedPreferences = getSharedPreferences("loginInfo", 0);
-                String loginString = sharedPreferences.getString("email", null);
+                String loginString = sharedPreferences.getString("id", null);
 
                 //자동로그인 기능
                 if(loginString != null){
 
                     Map<String, String> params = new HashMap<>();
-                    params.put("email", loginString);
-                    params.put("password", sharedPreferences.getString("password", null));
+                    params.put("id", loginString);
+                    params.put("passwd", sharedPreferences.getString("passwd", null));
                     LoginTask loginTask = new LoginTask(SplashActivity.this, params);
 
                     loginTask.execute(params);
                 }else {
-                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                     startActivity(intent);
                 }
                 finish();
-                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }
         }, 2000);
     }
