@@ -1,5 +1,7 @@
 package com.example.mello.myapplication;
 
+import android.content.Intent;
+import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -65,6 +67,9 @@ public class JoinActivity extends AppCompatActivity {
                     params.put("name", name);
                     params.put("phone_num",phone);
                     signTask.execute(params);
+
+                    Intent intent = new Intent(JoinActivity.this, MainActivity.class);
+                    startActivity(intent);
                 }
             }
         });
@@ -81,7 +86,7 @@ public class JoinActivity extends AppCompatActivity {
         name = nameEdit.getText().toString();
 
         if(id == null || id.trim().equals("")){
-            Toast.makeText(JoinActivity.this, "아이디을 입력하세요", Toast.LENGTH_SHORT).show();
+            Toast.makeText(JoinActivity.this, "학번을 입력하세요", Toast.LENGTH_SHORT).show();
             idEdit.requestFocus();
             return false;
         }
@@ -91,7 +96,7 @@ public class JoinActivity extends AppCompatActivity {
             return false;
         }
         if(name == null || name.trim().equals("")){
-            Toast.makeText(JoinActivity.this, "이름을을 입력하세요", Toast.LENGTH_SHORT).show();
+            Toast.makeText(JoinActivity.this, "이름을 입력하세요", Toast.LENGTH_SHORT).show();
             nameEdit.requestFocus();
             return false;
         }

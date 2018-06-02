@@ -20,7 +20,7 @@ public class SignTask extends AsyncTask<Map<String, String>, Integer, String> {
     protected String doInBackground(Map<String, String>... maps) { // 내가 전송하고 싶은 파라미터
 
 // Http 요청 준비 작업
-        HttpClient.Builder http = new HttpClient.Builder("POST", Constants.isaAddr+"members/");
+        HttpClient.Builder http = new HttpClient.Builder("POST", Constants.isaAddr+"members/signup");
 
 // Parameter 를 전송한다.
         http.addAllParameters(maps[0]);

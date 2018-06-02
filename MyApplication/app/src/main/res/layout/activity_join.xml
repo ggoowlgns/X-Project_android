@@ -58,8 +58,8 @@
                 android:layout_margin="7dp"
                 android:background="@drawable/gray_background"
                 android:ems="10"
-                android:hint="비밀번호 확인"
-                android:inputType="textPassword"
+                android:hint="이름"
+                android:inputType="textPersonName"
                 android:padding="5dp" />
 
             <EditText
@@ -69,7 +69,7 @@
                 android:layout_margin="7dp"
                 android:background="@drawable/gray_background"
                 android:ems="10"
-                android:hint="닉네임"
+                android:hint="핸드폰 번호"
                 android:inputType="textPersonName"
                 android:padding="5dp" />
 
@@ -90,7 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="?attr/colorControlActivated"
-                android:text="확인"
+                android:text="가입하기"
                 android:textColor="@android:color/white"
                 android:textSize="14sp"
                 android:textStyle="bold" />
