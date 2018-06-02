@@ -15,12 +15,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button button = (Button) findViewById(R.id.btn_login);
+        Button button_join = (Button)findViewById(R.id.btnRegist);
+
+
         button.setOnClickListener(new OnClickListener()
         {
             public void onClick(View v)
             {
                 Intent intent = new Intent(MainActivity.this, SubActivity.class);
                 startActivity(intent);
+            }
+        });
+        button_join.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_join = new Intent(MainActivity.this, JoinActivity.class);
+                startActivity(intent_join);
             }
         });
     }
