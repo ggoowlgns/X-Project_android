@@ -1,68 +1,43 @@
 package com.example.mello.myapplication.Network;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import com.example.mello.myapplication.Util.Constants;
 
-public class SignTask extends AsyncTask {
-    @Override
-    protected Object doInBackground(Object[] objects) {
+import java.util.Map;
 
-        HttpURLConnection conn = null;
+public class SignTask extends AsyncTask<Map<String, String>, Integer, String> {
 
-        try {
-            URL url = new URL("http://192.168.0.11:8090/springBoard/"); //요청 URL을 입력
-            conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("POST"); //요청 방식을 설정 (default : GET)
-
-            conn.setDoInput(true); //input을 사용하도록 설정 (default : true)
-            conn.setDoOutput(true); //output을 사용하도록 설정 (default : false)
-
-            conn.setConnectTimeout(60); //타임아웃 시간 설정 (default : 무한대기)
-
-            OutputStream os = conn.getOutputStream();
-            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8")); //캐릭터셋 설정
-
-            writer.write(
-                    "id=asdasd" +
-                            "&pass=asdads"
-            ); //요청 파라미터를 입력
-            writer.flush();
-            writer.close();
-            os.close();
-
-            conn.connect();
-
-            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8")); //캐릭터셋 설정
-
-            StringBuilder sb = new StringBuilder();
-            String line = null;
-            while ((line = br.readLine()) != null) {
-                if(sb.length() > 0) {
-                    sb.append("\n");
-                }
-                sb.append(line);
-            }
-
-            System.out.println("response:" + sb.toString());
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if(conn != null) {
-                conn.disconnect();
-            }
-        }
-
-
-
-        return null;
+    Context context;
+    public SignTask(Context context){
+        this.context = context;
     }
+
+    protected String doInBackground(Map<String, String>... maps) { // 내가 전송하고 싶은 파라미터
+
+// Http 요청 준비 작업
+        HttpClient.Builder http = new HttpClient.Builder("POST", Constants.isaAddr+"members/");
+
+// Parameter 를 전송한다.
+        http.addAllParameters(maps[0]);
+
+        Log.i("파라미터", maps[0] +"");
+//Http 요청 전송
+        HttpClient post = http.create();
+        post.request();
+
+// 응답 상태코드 가져오기
+        int statusCode = post.getHttpStatusCode();
+
+// 응답 본문 가져오기
+        String body = post.getBody();
+
+        return body;
+    }
+
+
 }
