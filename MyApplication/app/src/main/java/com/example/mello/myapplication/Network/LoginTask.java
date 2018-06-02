@@ -63,7 +63,6 @@ public class LoginTask extends AsyncTask <Map<String, String>, Integer, String>{
         }else {
             try {
                 JSONObject obj = new JSONObject(s);
-                int auth = obj.getInt("auth");
 
                 //자동로그인 등록
                 SharedPreferences sharedPreferences = context.getSharedPreferences("loginInfo", 0);
