@@ -58,7 +58,7 @@
                 android:layout_margin="7dp"
                 android:background="@drawable/gray_background"
                 android:ems="10"
-                android:hint="비밀번호 확인"
+                android:hint="이름"
                 android:inputType="textPassword"
                 android:padding="5dp" />
 
