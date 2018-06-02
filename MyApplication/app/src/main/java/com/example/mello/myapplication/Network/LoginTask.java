@@ -63,12 +63,6 @@ public class LoginTask extends AsyncTask <Map<String, String>, Integer, String>{
         }else {
 
             try {
-<<<<<<< HEAD
-                JSONObject obj = new JSONObject(s);
-=======
-                Log.i("in","sd");
->>>>>>> ebea63fef3a7da43c74a3d95cdab7d5dede002ec
-
                 //자동로그인 등록
                 SharedPreferences sharedPreferences = context.getSharedPreferences("loginInfo", 0);
                 SharedPreferences.Editor editor = sharedPreferences.edit();

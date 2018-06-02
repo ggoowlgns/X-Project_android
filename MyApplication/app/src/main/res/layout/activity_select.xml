@@ -9,6 +9,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Room Number"
+        android:textSize="20dp"
         />
     <Spinner
         android:id="@+id/mySpinner1"
@@ -26,20 +27,8 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Select People"
-        />
-
-    <Spinner
-        android:id="@+id/mySpinner2"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:drawSelectorOnTop="True"
-        android:prompt="@string/dept_prompt"
-        />
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
         android:text="Time Start"
+        android:textSize="20dp"
         />
 
     <Spinner
@@ -53,6 +42,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Time End"
+        android:textSize="20dp"
         />
 
     <Spinner
@@ -63,12 +53,86 @@
         android:prompt="@string/end_prompt"
         />
 
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Write People"
+        android:textSize="20dp"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="7"
+            android:id="@+id/people1"
+            android:layout_gravity="center"
+            android:hint="사용자1" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="7"
+            android:id="@+id/people2"
+            android:hint="사용자2" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="7"
+            android:id="@+id/people3"
+            android:hint="사용자3" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="7"
+            android:id="@+id/people4"
+            android:hint="사용자4" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="7"
+            android:id="@+id/people5"
+            android:hint="사용자5" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="7"
+            android:id="@+id/people6"
+            android:hint="사용자6" />
+    </LinearLayout>
+
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="예약하기"
         android:id="@+id/btn_reserve"
-        android:layout_below="@+id/mySpinner4"
+        android:textSize="20dp"
         />
 </LinearLayout>
