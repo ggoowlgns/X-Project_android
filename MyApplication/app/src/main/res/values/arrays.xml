@@ -5,15 +5,6 @@
         <item>Study Room2</item>
     </string-array>
 
-    <string-array name="dept">
-        <item>3명</item>
-        <item>4명</item>
-        <item>5명</item>
-        <item>6명</item>
-        <item>7명</item>
-        <item>8명</item>
-    </string-array>
-
     <string-array name="start">
         <item>09시30분</item>
         <item>10시00분</item>

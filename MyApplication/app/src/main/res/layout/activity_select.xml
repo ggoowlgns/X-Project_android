@@ -9,6 +9,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Room Number"
+        android:textSize="20dp"
         />
     <Spinner
         android:id="@+id/mySpinner1"
@@ -26,20 +27,8 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Select People"
-        />
-
-    <Spinner
-        android:id="@+id/mySpinner2"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:drawSelectorOnTop="True"
-        android:prompt="@string/dept_prompt"
-        />
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
         android:text="Time Start"
+        android:textSize="20dp"
         />
 
     <Spinner
@@ -53,6 +42,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Time End"
+        android:textSize="20dp"
         />
 
     <Spinner
@@ -63,12 +53,41 @@
         android:prompt="@string/end_prompt"
         />
 
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Write People"
+        android:textSize="20dp"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onButtonClicked1"
+            android:id="@+id/add_layout"
+            android:text="레이아웃 추가"/>
+
+        <LinearLayout
+            android:id="@+id/con"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/add_layout"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+        </LinearLayout>
+    </LinearLayout>
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="예약하기"
         android:id="@+id/btn_reserve"
-        android:layout_below="@+id/mySpinner4"
+        android:textSize="20dp"
         />
 </LinearLayout>
