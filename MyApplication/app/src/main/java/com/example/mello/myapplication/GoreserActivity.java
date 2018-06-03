@@ -7,9 +7,11 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.example.mello.myapplication.Util.Sub;
 
 import com.example.mello.myapplication.Network.LoginTask;
 
@@ -17,23 +19,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GoreserActivity extends AppCompatActivity{
-    EditText person1, person2, person3, person4, person5, person6;
-    String num, two, three, four, five, six;
-    private static final long MIN_CLICK_INTERVAL=600;
-    private long mLastClickTime;
-
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select);
-        person1 = (EditText)findViewById(R.id.people1);
-        person2 = (EditText)findViewById(R.id.people2);
-        person3 = (EditText)findViewById(R.id.people3);
-        person4 = (EditText)findViewById(R.id.people4);
-        person5 = (EditText)findViewById(R.id.people5);
-        person6 = (EditText)findViewById(R.id.people6);
 
         Button button = (Button) findViewById(R.id.btn_reserve);
+        Button add_button = (Button) findViewById(R.id.add_layout);
 
         Spinner spinner1 = (Spinner)findViewById(R.id.mySpinner1);
         ArrayAdapter adapter1 = ArrayAdapter.createFromResource(
@@ -56,55 +48,22 @@ public class GoreserActivity extends AppCompatActivity{
                 android.R.layout.simple_spinner_dropdown_item);
         spinner4.setAdapter(adapter4);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        add_button.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
-                if (checkValid()) {
-                    long currentClickTime = SystemClock.uptimeMillis();
-                    long elapsedTime = currentClickTime - mLastClickTime;
-                    mLastClickTime = currentClickTime;
+                Sub n_layout = new Sub(getApplicationContext());
+                LinearLayout con = (LinearLayout)findViewById(R.id.con);
+                con.addView(n_layout);
 
-                    // 중복 클릭인 경우
-                    if (elapsedTime <= MIN_CLICK_INTERVAL) {
-                        return;
+                Button but = (Button)findViewById(R.id.b1);
+                but.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(GoreserActivity.this, "클릭되었습니다.", Toast.LENGTH_LONG).show();
                     }
-
-                    Map<String, String> params = new HashMap<>();
-                    params.put("human1", num);
-                    params.put("human2", two);
-                    params.put("human3", three);
-                    params.put("human4", four);
-                    params.put("human5", five);
-                    params.put("human6", six);
-                    LoginTask loginTask = new LoginTask(GoreserActivity.this,params);
-                    loginTask.execute(params);
-
-                }
+                });
             }
         });
-    }
-    private boolean checkValid(){
-        num = person1.getText().toString();
-        two = person2.getText().toString();
-        three = person3.getText().toString();
-        four = person4.getText().toString();
-        five = person5.getText().toString();
-        six = person6.getText().toString();
 
-        if(num == null || num.trim().equals("")){
-            Toast.makeText(GoreserActivity.this, "사용자3까지 추가해주세요", Toast.LENGTH_SHORT).show();
-            person1.requestFocus();
-            return false;
-        }
-        if(two == null || two.trim().equals("")){
-            Toast.makeText(GoreserActivity.this, "사용자3까지 추가해주세요", Toast.LENGTH_SHORT).show();
-            person2.requestFocus();
-            return false;
-        }
-        if(three == null || three.trim().equals("")){
-            Toast.makeText(GoreserActivity.this, "사용자3까지 추가해주세요", Toast.LENGTH_SHORT).show();
-            person3.requestFocus();
-            return false;
-        }
-        return true;
     }
 }
