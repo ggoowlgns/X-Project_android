@@ -12,8 +12,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.mello.myapplication.Network.SignTask;
@@ -26,8 +28,9 @@ public class JoinActivity extends AppCompatActivity {
     Toolbar signToolbar; // 회원가입 툴바
     Button signOkBtn; // 확인버튼
     //이메일, 비밀번호, 비밀번호 확인, 이름 입력
-    EditText idEdit, pwEdit, phoneEdit, nameEdit;
+    EditText idEdit, pwEdit, phoneEdit, nameEdit, jobEdit;
     String id, pw, phone, name;
+
     private static final long MIN_CLICK_INTERVAL=600;
 
     private long mLastClickTime;
@@ -41,9 +44,18 @@ public class JoinActivity extends AppCompatActivity {
         pwEdit = (EditText)findViewById(R.id.signPw);
         nameEdit = (EditText)findViewById(R.id.signName);
         phoneEdit = (EditText)findViewById(R.id.signPhone);
+        Spinner spinner_job = (Spinner)findViewById(R.id.mySpinner_job);
         setSupportActionBar(signToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.back);
+
+
+        ArrayAdapter<CharSequence> adapter_job = ArrayAdapter.createFromResource(this, R.array.job,
+                android.R.layout.simple_spinner_item);
+        adapter_job.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_job.setAdapter(adapter_job);
+
+        final String job = spinner_job.getSelectedItem().toString();
 
         /**
          * 확인버튼 이벤트처리
@@ -66,6 +78,7 @@ public class JoinActivity extends AppCompatActivity {
                     params.put("passwd", pw);
                     params.put("name", name);
                     params.put("phone_num",phone);
+                    params.put("job", job);
                     signTask.execute(params);
 
                     Intent intent = new Intent(JoinActivity.this, MainActivity.class);
