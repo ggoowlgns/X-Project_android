@@ -32,32 +32,34 @@ public class MainActivity extends AppCompatActivity {
 
 
         button.setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-                if (checkValid()) {
-                    long currentClickTime = SystemClock.uptimeMillis();
-                    long elapsedTime = currentClickTime - mLastClickTime;
-                    mLastClickTime = currentClickTime;
-
-                    // 중복 클릭인 경우
-                    if (elapsedTime <= MIN_CLICK_INTERVAL) {
-                        return;
-                    }
-
-                    Map<String, String> params = new HashMap<>();
-                    params.put("id", id);
-                    params.put("passwd", pw);
-                    LoginTask loginTask = new LoginTask(MainActivity.this,params);
-                    loginTask.execute(params);
-
-                }
-            }
+           public void onClick(View v) {
+//                if (checkValid()) {
+//                    long currentClickTime = SystemClock.uptimeMillis();
+//                    long elapsedTime = currentClickTime - mLastClickTime;
+//                    mLastClickTime = currentClickTime;
+//
+//                    // 중복 클릭인 경우
+//                    if (elapsedTime <= MIN_CLICK_INTERVAL) {
+//                        return;
+//                    }
+//
+//                    Map<String, String> params = new HashMap<>();
+//                    params.put("id", id);
+//                    params.put("passwd", pw);
+//                    LoginTask loginTask = new LoginTask(MainActivity.this,params);
+//                    loginTask.execute(params);
+//
+//                }
+               Intent intent_join = new Intent(MainActivity.this, SubActivity.class);
+               startActivity(intent_join);
+           }
         });
 
         button_join.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent_join = new Intent(MainActivity.this, JoinActivity.class);
-                startActivity(intent_join);
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent_join = new Intent(MainActivity.this, JoinActivity.class);
+                        startActivity(intent_join);
             }
         });
     }

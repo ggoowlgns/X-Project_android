@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:gravity="top">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_gravity="top|center"
+        android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="내부 레이아웃"
-            android:textSize="30dp"/>
+            android:id="@+id/number"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:ems="10"
+            android:padding="5dp" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:id="@+id/late"
+            android:layout_width="124dp"
             android:layout_height="wrap_content"
-            android:id="@+id/b1"
-            android:text="내부 레이아웃 버튼"/>
+            android:text="등록취소" />
 
     </LinearLayout>
 </LinearLayout>
