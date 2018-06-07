@@ -30,8 +30,8 @@ public class SubActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 SharedPreferences sharedPreferences = getSharedPreferences("loginInfo", 0);
-                String job = "교수";
-//                job =sharedPreferences.getString("job", null);
+
+                job =sharedPreferences.getString("job", null);
                 if (job.equals("교수")){
                     Intent intent_pro = new Intent(SubActivity.this, ProActivity.class);
                     startActivity(intent_pro);

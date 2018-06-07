@@ -1,5 +1,6 @@
 package com.example.mello.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
@@ -24,10 +25,9 @@ public class ClassActivity extends AppCompatActivity{
     String id_num, sub_name;
     private static final long MIN_CLICK_INTERVAL=600;
     private long mLastClickTime;
-    private String[] iden = {"201402239"};
+    private String[] iden = {""};
 
     ArrayAdapter<String> adapter;
-    ArrayList<String> idList;
     EditText idText;
 
     @Override
@@ -80,6 +80,8 @@ public class ClassActivity extends AppCompatActivity{
                 params.put("sub_name", sub_name);
                 subjectTask.execute(params);
 
+                Intent intent = new Intent(ClassActivity.this, ProActivity.class);
+                startActivity(intent);
             }
         });
     }

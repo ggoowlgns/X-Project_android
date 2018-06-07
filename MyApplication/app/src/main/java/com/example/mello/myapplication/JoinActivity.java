@@ -72,6 +72,7 @@ public class JoinActivity extends AppCompatActivity {
                     if(elapsedTime<=MIN_CLICK_INTERVAL){
                         return;
                     }
+
                     SignTask signTask = new SignTask(JoinActivity.this);
                     Map<String, String> params = new HashMap<>();
                     params.put("id", id);
