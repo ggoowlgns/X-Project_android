@@ -5,7 +5,7 @@
         <item>Study Room2</item>
     </string-array>
 
-    <string-array name="job">
+    <string-array name="job_name">
         <item>교수</item>
         <item>학생</item>
     </string-array>

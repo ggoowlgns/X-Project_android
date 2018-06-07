@@ -61,20 +61,19 @@ public class LoginTask extends AsyncTask <Map<String, String>, Integer, String>{
         if(s.trim().equals("")) {
             Toast.makeText(context, "회원 정보가 없거나 일치하지 않습니다.", Toast.LENGTH_LONG).show();
         }else {
-
+            Log.i("as","asd"+s);
             try {
                 //자동로그인 등록
                 SharedPreferences sharedPreferences = context.getSharedPreferences("loginInfo", 0);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                String loginString = sharedPreferences.getString("id", null);
 
-                if(loginString == null){
-                    editor.putString("id", params.get("id"));
-                    editor.putString("passwd", params.get("passwd"));
-                    editor.putString("job", params.get("job"));
-                    editor.commit();
-                }
+                editor.putString("id", params.get("id"));
+                editor.putString("passwd", params.get("passwd"));
+                editor.putString("job", s);
+                editor.commit();
+
                 UserInfo.id = params.get("id");
+                UserInfo.job = s;
                 context.startActivity(new Intent(context, SubActivity.class));
 
             }catch(Exception e){

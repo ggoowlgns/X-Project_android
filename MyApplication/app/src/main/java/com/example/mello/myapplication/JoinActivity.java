@@ -10,8 +10,10 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,7 +31,7 @@ public class JoinActivity extends AppCompatActivity {
     Button signOkBtn; // 확인버튼
     //이메일, 비밀번호, 비밀번호 확인, 이름 입력
     EditText idEdit, pwEdit, phoneEdit, nameEdit, jobEdit;
-    String id, pw, phone, name;
+    String id, pw, phone, name, job_final;
 
     private static final long MIN_CLICK_INTERVAL=600;
 
@@ -44,23 +46,41 @@ public class JoinActivity extends AppCompatActivity {
         pwEdit = (EditText)findViewById(R.id.signPw);
         nameEdit = (EditText)findViewById(R.id.signName);
         phoneEdit = (EditText)findViewById(R.id.signPhone);
-        Spinner spinner_job = (Spinner)findViewById(R.id.mySpinner_job);
+        final Spinner spinner_job = (Spinner)findViewById(R.id.mySpinner_job);
         setSupportActionBar(signToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.back);
 
 
-        ArrayAdapter<CharSequence> adapter_job = ArrayAdapter.createFromResource(this, R.array.job,
+        ArrayAdapter<CharSequence> adapter_job = ArrayAdapter.createFromResource(this, R.array.job_name,
                 android.R.layout.simple_spinner_item);
         adapter_job.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_job.setAdapter(adapter_job);
 
-        final String job = spinner_job.getSelectedItem().toString();
+
+
+        spinner_job.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+               // Toast.makeText(JoinActivity.this, spinner_job.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+                final String job = spinner_job.getSelectedItem().toString();
+                Log.i("직업", job);
+                job_final = job;
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
 
         /**
          * 확인버튼 이벤트처리
          */
         signOkBtn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 if(checkValid()){
@@ -79,11 +99,10 @@ public class JoinActivity extends AppCompatActivity {
                     params.put("passwd", pw);
                     params.put("name", name);
                     params.put("phone_num",phone);
-                    params.put("job", job);
+                    params.put("job", job_final);
+
                     signTask.execute(params);
 
-                    Intent intent = new Intent(JoinActivity.this, MainActivity.class);
-                    startActivity(intent);
                 }
             }
         });
