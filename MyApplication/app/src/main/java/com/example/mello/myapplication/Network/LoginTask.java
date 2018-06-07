@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.mello.myapplication.MainActivity;
+import com.example.mello.myapplication.ProActivity;
 import com.example.mello.myapplication.SubActivity;
 import com.example.mello.myapplication.User.UserInfo;
 import com.example.mello.myapplication.Util.Constants;
@@ -66,9 +67,11 @@ public class LoginTask extends AsyncTask <Map<String, String>, Integer, String>{
                 SharedPreferences sharedPreferences = context.getSharedPreferences("loginInfo", 0);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 String loginString = sharedPreferences.getString("id", null);
+
                 if(loginString == null){
                     editor.putString("id", params.get("id"));
                     editor.putString("passwd", params.get("passwd"));
+                    editor.putString("job", params.get("job"));
                     editor.commit();
                 }
                 UserInfo.id = params.get("id");

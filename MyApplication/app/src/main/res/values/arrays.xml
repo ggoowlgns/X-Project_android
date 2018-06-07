@@ -5,6 +5,11 @@
         <item>Study Room2</item>
     </string-array>
 
+    <string-array name="job">
+        <item>교수</item>
+        <item>학생</item>
+    </string-array>
+
     <string-array name="start">
         <item>09시30분</item>
         <item>10시00분</item>

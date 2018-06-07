@@ -32,7 +32,7 @@ public class ReserActivity extends AppCompatActivity {
             }
         });
 
-        Button button3 = (Button) findViewById(R.id.rule);
+        Button button3 = (Button) findViewById(R.id.use);
         button3.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)

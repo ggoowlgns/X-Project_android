@@ -48,22 +48,22 @@ public class GoreserActivity extends AppCompatActivity{
                 android.R.layout.simple_spinner_dropdown_item);
         spinner4.setAdapter(adapter4);
 
-        add_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Sub n_layout = new Sub(getApplicationContext());
-                LinearLayout con = (LinearLayout)findViewById(R.id.con);
-                con.addView(n_layout);
+      //  add_button.setOnClickListener(new View.OnClickListener() {
+       //     @Override
+      //      public void onClick(View v) {
+        //        Sub n_layout = new Sub(getApplicationContext());
+        //        LinearLayout con = (LinearLayout)findViewById(R.id.con);
+         //       con.addView(n_layout);
 
-                Button but = (Button)findViewById(R.id.b1);
-                but.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(GoreserActivity.this, "클릭되었습니다.", Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
-        });
+      //          Button but = (Button)findViewById(R.id.b1);
+        //        but.setOnClickListener(new View.OnClickListener() {
+            //        @Override
+          //          public void onClick(View v) {
+          //              Toast.makeText(GoreserActivity.this, "클릭되었습니다.", Toast.LENGTH_LONG).show();
+           //         }
+            //    });
+      //      }
+    //    });
 
     }
 }

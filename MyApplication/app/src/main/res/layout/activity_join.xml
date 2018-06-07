@@ -73,7 +73,25 @@
                 android:inputType="textPersonName"
                 android:padding="5dp" />
 
+            <TextView
+                android:id="@+id/choose_job"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="7dp"
+                android:background="@drawable/gray_background"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:padding="5dp"
+                android:text="직업선택"
+                android:textSize="18dp" />
 
+            <Spinner
+                android:id="@+id/mySpinner_job"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:drawSelectorOnTop="True"
+                android:prompt="@string/choose_job"
+                />
         </LinearLayout>
 
         <LinearLayout

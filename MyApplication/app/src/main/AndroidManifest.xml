@@ -17,8 +17,6 @@
         <activity android:name=".SplashActivity">
         </activity>
         <activity android:name=".MainActivity">
-
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,11 +24,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".SubActivity" />
+        <activity android:name=".ProActivity" />
+        <activity android:name=".StudentActivity" />
         <activity android:name=".ReserActivity" />
         <activity android:name=".GoreserActivity" />
         <activity android:name=".RelistActivity" />
         <activity android:name=".RuleActivity" />
         <activity android:name=".HowActivity" />
+        <activity android:name=".ClassActivity"/>
         <activity android:name=".JoinActivity"></activity>
     </application>
 
