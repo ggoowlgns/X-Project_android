@@ -19,5 +19,19 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/add_layout"
-        android:orientation="vertical"></LinearLayout>
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+    <include
+        layout="@layout/sub"
+        android:id="@+id/main_layout_textview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+    <include
+        layout="@layout/button"
+        android:id="@+id/main_layout_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>
