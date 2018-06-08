@@ -1,6 +1,8 @@
 package com.example.mello.myapplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -11,9 +13,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mello.myapplication.Network.GetSubjectTask;
 import com.example.mello.myapplication.Util.Sub;
 
 import org.w3c.dom.Text;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 public class ProActivity extends AppCompatActivity {
     Intent intent_name;
@@ -34,6 +41,30 @@ public class ProActivity extends AppCompatActivity {
             Button b01 = (Button)findViewById(R.id.layout_button_02);
             tv01.setText(name);
         }
+        SharedPreferences sharedPreferences = getSharedPreferences("loginInfo", 0);
+        String pro_name = sharedPreferences.getString("name", null);
+
+        Map<String, String> params = new HashMap<>();
+        params.put("pro_name", pro_name);
+        GetSubjectTask getSubjectTask = new GetSubjectTask(ProActivity.this, params);
+        String temp="No Lecture";
+        try {
+            temp = getSubjectTask.execute(params).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+//        Log.i("ProAct", "temp: "+temp);
+        if(!temp.equals("No Lecture")){
+            String[] lec_arry= temp.split("/");
+            for(String lec :lec_arry){
+                Log.i("ProAct ", "lec : "+lec);
+
+            }
+        }
+
+
         Button button_class = (Button)findViewById(R.id.open_class);
         button_class.setOnClickListener(new View.OnClickListener() {
             @Override
