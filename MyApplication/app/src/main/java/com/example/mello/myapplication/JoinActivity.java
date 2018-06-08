@@ -1,7 +1,14 @@
 package com.example.mello.myapplication;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Paint;
+import android.net.Uri;
+import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -10,15 +17,26 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mello.myapplication.Network.SignTask;
+import com.example.mello.myapplication.ModelClass.EventModel;
+import com.example.mello.myapplication.Network.UploadFileTask;
+import com.example.mello.myapplication.Util.Constants;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,10 +48,32 @@ public class JoinActivity extends AppCompatActivity {
     //이메일, 비밀번호, 비밀번호 확인, 이름 입력
     EditText idEdit, pwEdit, phoneEdit, nameEdit, jobEdit;
     String id, pw, phone, name;
+    private TextView responseTextView;
+    private ImageView imageView;
 
     private static final long MIN_CLICK_INTERVAL=600;
 
     private long mLastClickTime;
+
+    private static final String FIELD_NAME = "imagefile";
+
+    private String filePath;
+    private String mimeType;
+
+    private static final int PICK_PHOTO = 1958;
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(EventModel event) throws ClassNotFoundException {
+        if (event.isTagMatchWith("response")) {
+            String responseMessage = "Response from Server:\n" + event.getMessage();
+            responseTextView.setText(responseMessage);
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +84,10 @@ public class JoinActivity extends AppCompatActivity {
         pwEdit = (EditText)findViewById(R.id.signPw);
         nameEdit = (EditText)findViewById(R.id.signName);
         phoneEdit = (EditText)findViewById(R.id.signPhone);
+        imageView = (ImageView) findViewById(R.id.imageView);
+        responseTextView = (TextView) findViewById(R.id.responseTextView);
+
+        verifyStoragePermissions(this);
         Spinner spinner_job = (Spinner)findViewById(R.id.mySpinner_job);
         setSupportActionBar(signToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -73,6 +117,7 @@ public class JoinActivity extends AppCompatActivity {
                         return;
                     }
 
+
                     SignTask signTask = new SignTask(JoinActivity.this);
                     Map<String, String> params = new HashMap<>();
                     params.put("id", id);
@@ -80,7 +125,11 @@ public class JoinActivity extends AppCompatActivity {
                     params.put("name", name);
                     params.put("phone_num",phone);
                     params.put("job", job);
+                    params.put("attend", "0");
                     signTask.execute(params);
+                    Log.i("mime :",mimeType);
+
+                    new UploadFileTask(JoinActivity.this).execute(filePath, mimeType, Constants.isaAddr+"photo/upload", FIELD_NAME );
 
                     Intent intent = new Intent(JoinActivity.this, MainActivity.class);
                     startActivity(intent);
@@ -140,5 +189,79 @@ public class JoinActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void addPhoto(View view) {
+        Intent intent = new Intent(Intent.ACTION_PICK,
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, PICK_PHOTO);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == PICK_PHOTO) {
+            Uri imageUri = data.getData();
+            filePath = getPath(imageUri);
+            imageView.setImageURI(imageUri);
+            Log.i("imageUri: ",filePath);
+            mimeType = MimeTypeMap.getSingleton()
+                    .getMimeTypeFromExtension(
+                            MimeTypeMap.getFileExtensionFromUrl(filePath));
+        }
+    }
+
+
+    //안돌아가는 부분 그냥 가져온거
+    public void uploadButtonClicked(View view) {
+        String mimeType = MimeTypeMap.getSingleton()
+                .getMimeTypeFromExtension(
+                        MimeTypeMap.getFileExtensionFromUrl(filePath));
+
+        new UploadFileTask(this).execute(filePath, mimeType, Constants.isaAddr, FIELD_NAME );
+
+        //NetworkCall.fileUpload(filePath, new ImageSenderInfo(name, age));
+    }
+
+    private String getPath(Uri uri) {
+        String[] projection = { MediaStore.Images.Media.DATA };
+        Cursor cursor = managedQuery(uri, projection, null, null, null);
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        Log.i("path: ",cursor.getString(column_index));
+        return cursor.getString(column_index);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
+
+    /**
+     * Checks if the app has permission to write to device storage
+     *
+     * If the app does not has permission then the user will be prompted to grant permissions
+     *
+     * @param activity
+     */
+    public static void verifyStoragePermissions(Activity activity) {
+        // Check if we have write permission
+        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    activity,
+                    PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE
+            );
+        }
     }
 }
