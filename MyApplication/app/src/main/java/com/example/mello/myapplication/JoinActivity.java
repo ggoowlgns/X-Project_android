@@ -20,11 +20,11 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-<<<<<<< HEAD
+
 import android.webkit.MimeTypeMap;
-=======
+
 import android.widget.AdapterView;
->>>>>>> 3672e42f71b7a8714b1f996cf4704d28e0d9768d
+
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -51,13 +51,11 @@ public class JoinActivity extends AppCompatActivity {
     Button signOkBtn; // 확인버튼
     //이메일, 비밀번호, 비밀번호 확인, 이름 입력
     EditText idEdit, pwEdit, phoneEdit, nameEdit, jobEdit;
-<<<<<<< HEAD
-    String id, pw, phone, name;
     private TextView responseTextView;
     private ImageView imageView;
-=======
+
     String id, pw, phone, name, job_final;
->>>>>>> 3672e42f71b7a8714b1f996cf4704d28e0d9768d
+
 
     private static final long MIN_CLICK_INTERVAL=600;
 
@@ -92,15 +90,14 @@ public class JoinActivity extends AppCompatActivity {
         pwEdit = (EditText)findViewById(R.id.signPw);
         nameEdit = (EditText)findViewById(R.id.signName);
         phoneEdit = (EditText)findViewById(R.id.signPhone);
-<<<<<<< HEAD
+
         imageView = (ImageView) findViewById(R.id.imageView);
         responseTextView = (TextView) findViewById(R.id.responseTextView);
 
         verifyStoragePermissions(this);
-        Spinner spinner_job = (Spinner)findViewById(R.id.mySpinner_job);
-=======
-        final Spinner spinner_job = (Spinner)findViewById(R.id.mySpinner_job);
->>>>>>> 3672e42f71b7a8714b1f996cf4704d28e0d9768d
+
+        final Spinner spinner_job = (Spinner)findViewById(R.id.mySpinner_job);    //final 확인
+
         setSupportActionBar(signToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.back);
@@ -130,6 +127,7 @@ public class JoinActivity extends AppCompatActivity {
 
         });
 
+
         /**
          * 확인버튼 이벤트처리
          */
@@ -154,13 +152,12 @@ public class JoinActivity extends AppCompatActivity {
                     params.put("passwd", pw);
                     params.put("name", name);
                     params.put("phone_num",phone);
-<<<<<<< HEAD
-                    params.put("job", job);
+
                     params.put("attend", "0");
-=======
+
                     params.put("job", job_final);
 
->>>>>>> 3672e42f71b7a8714b1f996cf4704d28e0d9768d
+
                     signTask.execute(params);
                     Log.i("mime :",mimeType);
 

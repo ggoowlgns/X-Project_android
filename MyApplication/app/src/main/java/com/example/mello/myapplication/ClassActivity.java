@@ -1,14 +1,17 @@
 package com.example.mello.myapplication;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 import com.example.mello.myapplication.Network.SubjectTask;
@@ -17,6 +20,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.example.mello.myapplication.R.layout.sub;
+
 public class ClassActivity extends AppCompatActivity{
     Toolbar signToolbar; // 회원가입 툴바
     EditText enterId, subEnter;
@@ -24,7 +29,7 @@ public class ClassActivity extends AppCompatActivity{
     private static final long MIN_CLICK_INTERVAL=600;
     private long mLastClickTime;
     private String[] iden = {};
-
+    final ArrayList<String> idList = new ArrayList<String>(Arrays.asList(iden));
     ArrayAdapter<String> adapter;
     EditText idText;
 
@@ -41,7 +46,7 @@ public class ClassActivity extends AppCompatActivity{
 
         idText = (EditText)findViewById(R.id.rg_number);
         //idList.addAll(Arrays.asList(iden));
-        final ArrayList<String> idList = new ArrayList<String>(Arrays.asList(iden));
+
         adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,idList);
 
         ListView list = (ListView)findViewById(R.id.con);
@@ -71,13 +76,21 @@ public class ClassActivity extends AppCompatActivity{
                 if(elapsedTime<=MIN_CLICK_INTERVAL){
                     return;
                 }
+                String send_stu = "";
+                //for-loop 통한 전체 조회
+                for(Object object : idList) {
+                    String element = (String) object;
+                    send_stu += element +"/";
+                }
+                Log.i("stu :", "" +send_stu);
                 SubjectTask subjectTask = new SubjectTask(ClassActivity.this);
                 Map<String, String> params = new HashMap<>();
-                params.put("id_num", id_num);
+                params.put("id_num", send_stu);
                 params.put("sub_name", sub_name);
                 subjectTask.execute(params);
 
                 Intent intent = new Intent(ClassActivity.this, ProActivity.class);
+                intent.putExtra("sub_name", sub_name);
                 startActivity(intent);
             }
         });
