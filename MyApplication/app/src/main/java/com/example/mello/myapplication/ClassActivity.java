@@ -2,6 +2,7 @@ package com.example.mello.myapplication;
 
 import android.app.ActionBar;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
@@ -24,7 +25,7 @@ import static com.example.mello.myapplication.R.layout.sub;
 
 public class ClassActivity extends AppCompatActivity{
     Toolbar signToolbar; // 회원가입 툴바
-    EditText enterId, subEnter, proName;
+    EditText enterId, subEnter;
     String id_num, sub_name, pro_name;
     private static final long MIN_CLICK_INTERVAL=600;
     private long mLastClickTime;
@@ -40,7 +41,6 @@ public class ClassActivity extends AppCompatActivity{
         signToolbar = (Toolbar) findViewById(R.id.signtool);
         enterId = (EditText)findViewById(R.id.rg_number);
         subEnter = (EditText)findViewById(R.id.Class_name);
-        proName = (EditText)findViewById(R.id.Class_pro);
         setSupportActionBar(signToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -67,9 +67,11 @@ public class ClassActivity extends AppCompatActivity{
         Button button_make = (Button)findViewById(R.id.Complete);
         button_make.setOnClickListener(new android.view.View.OnClickListener(){
             public void onClick(View v){
+                SharedPreferences sharedPreferences = getSharedPreferences("loginInfo", 0);
+
+                pro_name = sharedPreferences.getString("name", null);
                 id_num = idList.toString();
                 sub_name = subEnter.getText().toString();
-                pro_name = proName.getText().toString();
 
                 long currentClickTime= SystemClock.uptimeMillis();
                 long elapsedTime=currentClickTime-mLastClickTime;

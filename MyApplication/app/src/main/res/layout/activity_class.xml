@@ -17,10 +17,12 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/signtool"
         android:background="@android:color/white"
         android:padding="10dp"
-        tools:context="com.example.mello.myapplication.JoinActivity">
+        tools:context="com.example.mello.myapplication.JoinActivity"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:id="@+id/linearLayout4"
@@ -39,17 +41,6 @@
             android:hint="강의명"
             android:inputType="textEmailAddress"
             android:padding="5dp" />
-
-            <EditText
-                android:id="@+id/Class_pro"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_margin="7dp"
-                android:background="@drawable/gray_background"
-                android:ems="10"
-                android:hint="성 함"
-                android:inputType="textEmailAddress"
-                android:padding="5dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"

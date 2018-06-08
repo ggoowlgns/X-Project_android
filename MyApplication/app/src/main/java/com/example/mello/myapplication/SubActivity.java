@@ -29,7 +29,6 @@ public class SubActivity extends AppCompatActivity {
                 SharedPreferences sharedPreferences = getSharedPreferences("loginInfo", 0);
                 String job = sharedPreferences.getString("job", null);
                 Log.i("직업",""+ job);
-
                 if (job.equals("교수")){
                     Intent intent_pro = new Intent(SubActivity.this, ProActivity.class);
                     startActivity(intent_pro);
