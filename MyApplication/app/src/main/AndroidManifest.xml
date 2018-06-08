@@ -33,6 +33,7 @@
         <activity android:name=".RuleActivity" />
         <activity android:name=".HowActivity" />
         <activity android:name=".ClassActivity"/>
+        <activity android:name=".CheckingActivity"/>
         <activity android:name=".JoinActivity"></activity>
     </application>
 
