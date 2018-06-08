@@ -30,13 +30,24 @@
             android:padding="20dp">
 
             <EditText
-                android:id="@+id/Class_name"
+            android:id="@+id/Class_name"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="7dp"
+            android:background="@drawable/gray_background"
+            android:ems="10"
+            android:hint="강의명"
+            android:inputType="textEmailAddress"
+            android:padding="5dp" />
+
+            <EditText
+                android:id="@+id/Class_pro"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_margin="7dp"
                 android:background="@drawable/gray_background"
                 android:ems="10"
-                android:hint="강의명"
+                android:hint="성 함"
                 android:inputType="textEmailAddress"
                 android:padding="5dp" />
 
