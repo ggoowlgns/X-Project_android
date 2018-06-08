@@ -46,6 +46,7 @@ public class SubjectDetailTask extends AsyncTask <Map<String, String>, Integer, 
 
     @Override
     protected void onPostExecute(String s) {
+
         Log.i("GetSujectDetail","GetSujectDetail: "+s);
     }
 
