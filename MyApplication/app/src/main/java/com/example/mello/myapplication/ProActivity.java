@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,12 +29,10 @@ public class ProActivity extends AppCompatActivity {
         if(name != null){
             Log.i("이름",""+name);
             View textView = (View)findViewById(R.id.main_layout_textview);
-            TextView tv01 = (TextView)textView.findViewById(R.id.subject);
+            TextView tv01 = (EditText)textView.findViewById(R.id.subject);
             View Button = (View)findViewById(R.id.main_layout_button);
             Button b01 = (Button)findViewById(R.id.layout_button_02);
             tv01.setText(name);
-
-
         }
         Button button_class = (Button)findViewById(R.id.open_class);
         button_class.setOnClickListener(new View.OnClickListener() {

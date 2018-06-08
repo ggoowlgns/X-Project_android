@@ -24,8 +24,8 @@ import static com.example.mello.myapplication.R.layout.sub;
 
 public class ClassActivity extends AppCompatActivity{
     Toolbar signToolbar; // 회원가입 툴바
-    EditText enterId, subEnter;
-    String id_num, sub_name;
+    EditText enterId, subEnter, proName;
+    String id_num, sub_name, pro_name;
     private static final long MIN_CLICK_INTERVAL=600;
     private long mLastClickTime;
     private String[] iden = {};
@@ -40,9 +40,9 @@ public class ClassActivity extends AppCompatActivity{
         signToolbar = (Toolbar) findViewById(R.id.signtool);
         enterId = (EditText)findViewById(R.id.rg_number);
         subEnter = (EditText)findViewById(R.id.Class_name);
+        proName = (EditText)findViewById(R.id.Class_pro);
         setSupportActionBar(signToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.back);
 
         idText = (EditText)findViewById(R.id.rg_number);
         //idList.addAll(Arrays.asList(iden));
@@ -58,6 +58,8 @@ public class ClassActivity extends AppCompatActivity{
                 Toast.makeText(ClassActivity.this, "추가되었습니다.", Toast.LENGTH_LONG).show();
                 idList.add(0, idText.getText().toString());
                 adapter.notifyDataSetChanged();
+                idText.setText("");
+                idText.setHint("학번입력");
             }
 
         });
@@ -67,6 +69,7 @@ public class ClassActivity extends AppCompatActivity{
             public void onClick(View v){
                 id_num = idList.toString();
                 sub_name = subEnter.getText().toString();
+                pro_name = proName.getText().toString();
 
                 long currentClickTime= SystemClock.uptimeMillis();
                 long elapsedTime=currentClickTime-mLastClickTime;
@@ -87,6 +90,7 @@ public class ClassActivity extends AppCompatActivity{
                 Map<String, String> params = new HashMap<>();
                 params.put("id_num", send_stu);
                 params.put("sub_name", sub_name);
+                params.put("pro_name", pro_name);
                 subjectTask.execute(params);
 
                 Intent intent = new Intent(ClassActivity.this, ProActivity.class);
