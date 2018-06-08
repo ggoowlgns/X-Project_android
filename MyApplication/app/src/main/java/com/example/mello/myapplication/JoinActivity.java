@@ -20,7 +20,11 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+<<<<<<< HEAD
 import android.webkit.MimeTypeMap;
+=======
+import android.widget.AdapterView;
+>>>>>>> 3672e42f71b7a8714b1f996cf4704d28e0d9768d
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -47,9 +51,13 @@ public class JoinActivity extends AppCompatActivity {
     Button signOkBtn; // 확인버튼
     //이메일, 비밀번호, 비밀번호 확인, 이름 입력
     EditText idEdit, pwEdit, phoneEdit, nameEdit, jobEdit;
+<<<<<<< HEAD
     String id, pw, phone, name;
     private TextView responseTextView;
     private ImageView imageView;
+=======
+    String id, pw, phone, name, job_final;
+>>>>>>> 3672e42f71b7a8714b1f996cf4704d28e0d9768d
 
     private static final long MIN_CLICK_INTERVAL=600;
 
@@ -84,27 +92,49 @@ public class JoinActivity extends AppCompatActivity {
         pwEdit = (EditText)findViewById(R.id.signPw);
         nameEdit = (EditText)findViewById(R.id.signName);
         phoneEdit = (EditText)findViewById(R.id.signPhone);
+<<<<<<< HEAD
         imageView = (ImageView) findViewById(R.id.imageView);
         responseTextView = (TextView) findViewById(R.id.responseTextView);
 
         verifyStoragePermissions(this);
         Spinner spinner_job = (Spinner)findViewById(R.id.mySpinner_job);
+=======
+        final Spinner spinner_job = (Spinner)findViewById(R.id.mySpinner_job);
+>>>>>>> 3672e42f71b7a8714b1f996cf4704d28e0d9768d
         setSupportActionBar(signToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.back);
 
 
-        ArrayAdapter<CharSequence> adapter_job = ArrayAdapter.createFromResource(this, R.array.job,
+        ArrayAdapter<CharSequence> adapter_job = ArrayAdapter.createFromResource(this, R.array.job_name,
                 android.R.layout.simple_spinner_item);
         adapter_job.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_job.setAdapter(adapter_job);
 
-        final String job = spinner_job.getSelectedItem().toString();
+
+
+        spinner_job.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+               // Toast.makeText(JoinActivity.this, spinner_job.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+                final String job = spinner_job.getSelectedItem().toString();
+                Log.i("직업", job);
+                job_final = job;
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
 
         /**
          * 확인버튼 이벤트처리
          */
         signOkBtn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 if(checkValid()){
@@ -124,15 +154,18 @@ public class JoinActivity extends AppCompatActivity {
                     params.put("passwd", pw);
                     params.put("name", name);
                     params.put("phone_num",phone);
+<<<<<<< HEAD
                     params.put("job", job);
                     params.put("attend", "0");
+=======
+                    params.put("job", job_final);
+
+>>>>>>> 3672e42f71b7a8714b1f996cf4704d28e0d9768d
                     signTask.execute(params);
                     Log.i("mime :",mimeType);
 
                     new UploadFileTask(JoinActivity.this).execute(filePath, mimeType, Constants.isaAddr+"photo/upload", FIELD_NAME );
 
-                    Intent intent = new Intent(JoinActivity.this, MainActivity.class);
-                    startActivity(intent);
                 }
             }
         });

@@ -12,8 +12,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 import com.example.mello.myapplication.Network.SubjectTask;
-
-import java.lang.reflect.GenericArrayType;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -25,7 +23,7 @@ public class ClassActivity extends AppCompatActivity{
     String id_num, sub_name;
     private static final long MIN_CLICK_INTERVAL=600;
     private long mLastClickTime;
-    private String[] iden = {""};
+    private String[] iden = {};
 
     ArrayAdapter<String> adapter;
     EditText idText;
@@ -53,7 +51,6 @@ public class ClassActivity extends AppCompatActivity{
         button1.setOnClickListener(new android.view.View.OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(ClassActivity.this, "추가되었습니다.", Toast.LENGTH_LONG).show();
-
                 idList.add(0, idText.getText().toString());
                 adapter.notifyDataSetChanged();
             }
@@ -63,7 +60,7 @@ public class ClassActivity extends AppCompatActivity{
         Button button_make = (Button)findViewById(R.id.Complete);
         button_make.setOnClickListener(new android.view.View.OnClickListener(){
             public void onClick(View v){
-                id_num = enterId.getText().toString();
+                id_num = idList.toString();
                 sub_name = subEnter.getText().toString();
 
                 long currentClickTime= SystemClock.uptimeMillis();
@@ -85,4 +82,5 @@ public class ClassActivity extends AppCompatActivity{
             }
         });
     }
+
 }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -47,9 +48,10 @@ public class MainActivity extends AppCompatActivity {
                    params.put("passwd", pw);
                    LoginTask loginTask = new LoginTask(MainActivity.this,params);
                    loginTask.execute(params);
-                }
-               Intent intent_join = new Intent(MainActivity.this, SubActivity.class);
-               startActivity(intent_join);
+
+                   Intent intent_join = new Intent(MainActivity.this, SubActivity.class);
+                   startActivity(intent_join);
+               }
            }
         });
 

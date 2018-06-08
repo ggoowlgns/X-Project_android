@@ -6,4 +6,5 @@ package com.example.mello.myapplication.User;
 
 public class UserInfo {
     public static String id;
+    public static String job;
 }
