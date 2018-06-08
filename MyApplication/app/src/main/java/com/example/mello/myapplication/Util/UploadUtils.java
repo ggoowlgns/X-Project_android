@@ -26,7 +26,7 @@ public class UploadUtils {
     public static final int FILE_NOT_EXIST = -2;
 
     public static int postFileToURL(File file, String mimeType, URL url,
-                                    String fieldName) {
+                                    String fieldName,String id) {
         if (file == null) // 그림을 선택한 후 업로드하기 전에 삭제 될 수 있으므로 다시 판단하십시오.
             return FILE_NOT_EXIST;
         try {
@@ -35,7 +35,7 @@ public class UploadUtils {
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
             setHttpURLConnection(conn, boundary);
-            writeData(conn, boundary, file, mimeType, fieldName);
+            writeData(conn, boundary, file, mimeType, fieldName,id);
 
             int res = conn.getResponseCode();
             Log.i("in?", "or out");
@@ -66,13 +66,13 @@ public class UploadUtils {
     }
 
     private static void writeData(HttpURLConnection conn, String boundary,
-                                  File file, String mimeType, String fieldName) throws IOException {
+                                  File file, String mimeType, String fieldName,String id) throws IOException {
         DataOutputStream requestData = new DataOutputStream(
                 conn.getOutputStream());
 
         requestData.writeBytes("--" + boundary + CRLF);
         requestData.writeBytes("Content-Disposition: form-data; name=\""
-                + fieldName + "\"; filename=\"" + file.getName() + "\"" + CRLF);
+                + fieldName + "\"; filename=\"" + id+".jpg" + "\"" + CRLF);
         requestData.writeBytes("Content-Type: " + mimeType + CRLF + CRLF);
 
         InputStream fileInput = new FileInputStream(file);

@@ -32,7 +32,7 @@ public class UploadFileTask extends AsyncTask<String, Void, Integer> {
             Log.i("url : ","" +params[2]);
             Log.i("url : ","" +params[3]);
             return UploadUtils.postFileToURL(new File(params[0]), params[1],
-                    new URL(params[2]), params[3]);
+                    new URL(params[2]), params[3], params[4]);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
