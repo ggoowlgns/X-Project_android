@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
                    LoginTask loginTask = new LoginTask(MainActivity.this,params);
                    loginTask.execute(params);
 
-                   Intent intent_join = new Intent(MainActivity.this, SubActivity.class);
-                   startActivity(intent_join);
+                   //Intent intent_join = new Intent(MainActivity.this, SubActivity.class);
+                   //startActivity(intent_join);
                }
            }
         });
