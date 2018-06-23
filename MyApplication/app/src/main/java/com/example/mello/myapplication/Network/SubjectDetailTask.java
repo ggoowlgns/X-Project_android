@@ -3,6 +3,7 @@ package com.example.mello.myapplication.Network;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 
 /**
  * Created by JiHoon on 2018-06-09.
@@ -14,14 +15,17 @@ import java.util.Map;
 public class SubjectDetailTask extends AsyncTask <Map<String, String>, Integer, String>{
     Context context;
     Map<String, String> params;
+    ArrayAdapter<String> adapter;
     public SubjectDetailTask(Context context, Map<String ,String> params){
         this.context = context;
         this.params = params;
     }
 
+
+
     @Override
     protected String doInBackground(Map<String, String>... maps) { // 내가 전송하고 싶은 파라미터
-
+        Log.i("SubjectDetailTask","SubjectDetailTask: ");
 // Http 요청 준비 작업
         HttpClient.Builder http = new HttpClient.Builder("POST", Constants.isaAddr+"subject/get_subdetail");
 
@@ -43,12 +47,13 @@ public class SubjectDetailTask extends AsyncTask <Map<String, String>, Integer, 
 
         return body;
     }
-
     @Override
     protected void onPostExecute(String s) {
 
         Log.i("GetSujectDetail","GetSujectDetail: "+s);
     }
+
+
 
 
 }
