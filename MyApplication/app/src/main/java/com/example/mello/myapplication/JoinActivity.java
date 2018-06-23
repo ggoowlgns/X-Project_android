@@ -152,13 +152,8 @@ public class JoinActivity extends AppCompatActivity {
                     params.put("phone_num",phone);
                     params.put("attend", "0");
                     params.put("job", job_final);
-
-
                     params.put("attend", "0");
-
                     params.put("job", job_final);
-
-
                     signTask.execute(params);
                     Log.i("mime :",mimeType);
 
