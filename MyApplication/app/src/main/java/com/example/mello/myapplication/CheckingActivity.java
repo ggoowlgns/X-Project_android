@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.mello.myapplication.Network.HttpClient;
 import com.example.mello.myapplication.Network.SubjectDetailTask;
@@ -28,12 +29,17 @@ public class CheckingActivity extends AppCompatActivity {
     ArrayAdapter<String> adapter;
     Map<String, String> params = new HashMap<>();
     ListView list;
+    TextView show;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checking);
+
         Intent intent = getIntent();
         String sub_name = intent.getExtras().getString("sub_name");
         params.put("sub_name", sub_name);
+        Log.i("교과",""+sub_name);
+        show = (TextView)findViewById(R.id.show);
+        show.setText(sub_name);
         list = (ListView) findViewById(R.id.num);
 
         new listthread().start();

@@ -64,9 +64,9 @@ public class StudentActivity extends AppCompatActivity {
                         }
                         Log.i("StudentAct","stu_attend : "+stu_attend);
                         if (stu_attend.equals("1")) {
-                            stu_attend = "출석 되었습니다 !";
+                            stu_attend = "출석되었습니다 !";
                         } else {
-                            stu_attend = "결석 입니다 !";
+                            stu_attend = "결석입니다 !";
                         }
                         att.setText(stu_attend);
                     }

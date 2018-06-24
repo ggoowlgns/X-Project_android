@@ -48,7 +48,7 @@ public class ClassActivity extends AppCompatActivity{
         idText = (EditText)findViewById(R.id.rg_number);
         //idList.addAll(Arrays.asList(iden));
 
-        adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,idList);
+        adapter = new ArrayAdapter<String>(this,R.layout.makepont,idList);
 
         ListView list = (ListView)findViewById(R.id.con);
         list.setAdapter(adapter);
