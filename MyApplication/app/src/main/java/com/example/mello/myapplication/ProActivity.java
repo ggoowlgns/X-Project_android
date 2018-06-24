@@ -41,6 +41,7 @@ public class ProActivity extends AppCompatActivity {
 
         adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,subList);
         ListView list = (ListView)findViewById(R.id.school);
+
         list.setAdapter(adapter);
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
