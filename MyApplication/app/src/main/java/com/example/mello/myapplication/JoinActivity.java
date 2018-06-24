@@ -230,7 +230,7 @@ public class JoinActivity extends AppCompatActivity {
             Uri imageUri = data.getData();
             filePath = getPath(imageUri);
             imageView.setImageURI(imageUri);
-            Log.i("imageUri: ",filePath);
+            Log.i("imageUri: ",""+imageUri);
             mimeType = MimeTypeMap.getSingleton()
                     .getMimeTypeFromExtension(
                             MimeTypeMap.getFileExtensionFromUrl(filePath));
