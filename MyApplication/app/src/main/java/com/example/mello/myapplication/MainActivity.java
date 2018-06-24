@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private static final long MIN_CLICK_INTERVAL=600;
     private long mLastClickTime;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

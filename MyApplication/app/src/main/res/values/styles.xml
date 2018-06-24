@@ -20,6 +20,9 @@
 
     </style>
 
+    <style name="SplashTheme" parent="@android:style/Theme.Light.NoTitleBar">
+        <item name="android:windowBackground">@drawable/win</item>
+    </style>
 
 
     <style name="TranslucentActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
