@@ -57,7 +57,6 @@ public class CheckingActivity extends AppCompatActivity {
                         SubjectDetailTask subjectDetailTask = new SubjectDetailTask(CheckingActivity.this, params);
                         String sub_detail_res = "EMPTY";
 
-
                         try {
                             sub_detail_res = subjectDetailTask.execute(params).get();
                         } catch (InterruptedException e) {
