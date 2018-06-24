@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:gravity=""
-android:background="@color/bg">
+android:background="@drawable/sub">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/signtool"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:background="@android:color/white"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" />
+        android:theme="@style/TranslucentStatusBar" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="337dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="top">
 
 
         <Button

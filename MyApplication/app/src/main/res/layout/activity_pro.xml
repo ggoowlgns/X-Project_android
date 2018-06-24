@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:gravity="right"
     android:orientation="vertical"
-    android:background="@drawable/flash">
+    android:background="@drawable/cl">
 
     <Button
         android:id="@+id/open_class"
