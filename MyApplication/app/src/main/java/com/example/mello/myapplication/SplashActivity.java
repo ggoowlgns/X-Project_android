@@ -9,7 +9,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.example.mello.myapplication.R;
 import com.example.mello.myapplication.Network.LoginTask;
 import com.gun0912.tedpermission.*;
 
@@ -23,6 +22,17 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                startActivity(intent);
+
+                finish();
+            }
+        }, 3000);
 //        PermissionListener permissionListener = new PermissionListener() {
 //            /**
 //             * 권한 허용시

@@ -18,11 +18,6 @@ public class SubActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sub);
 
-        signToolbar = (Toolbar)findViewById(R.id.signtool);
-        setSupportActionBar(signToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.back);
-
         Button button = (Button) findViewById(R.id.btn_study);
         button.setOnClickListener(new android.view.View.OnClickListener() {
             public void onClick(View v) {

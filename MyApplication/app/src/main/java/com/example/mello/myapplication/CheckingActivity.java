@@ -78,7 +78,7 @@ public class CheckingActivity extends AppCompatActivity {
                                 } else {
                                     attend = "결석";
                                 }
-                                checkList.add(0, "id : " + id + "         attend : " + attend);
+                                checkList.add(0, "학번 : " + id + "         출석확인 : " + attend);
                             }
                         }
 
