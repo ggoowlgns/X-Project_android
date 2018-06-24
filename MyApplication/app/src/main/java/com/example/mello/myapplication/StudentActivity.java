@@ -1,6 +1,7 @@
 package com.example.mello.myapplication;
 
 import android.content.ContentUris;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,7 +11,11 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,60 +27,42 @@ import static com.example.mello.myapplication.Util.Constants.isaAddr;
 import static com.example.mello.myapplication.Util.Constants.isaFtpAddr;
 
 public class StudentActivity extends AppCompatActivity {
-    ImageView imView;
-    Bitmap bmImg;
-//    back task;
-    String imgUrl = isaAddr;
-    File imgFile = new  File(imgUrl + "/face/get/");
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
 
-        Log.i("먼가","" + imgFile);
+        SharedPreferences sharedPreferences = getSharedPreferences("loginInfo", 0);
+        String name = sharedPreferences.getString("name", null);
+        String id = sharedPreferences.getString("id", null);
+        Log.i("이름",""+ name);
+        Log.i("학번",""+ id);
+        TextView rl = (TextView)findViewById(R.id.etName);
+        rl.setText("이름: " + name);
+        TextView hak = (TextView)findViewById(R.id.etId);
+        hak.setText("학번: " + id);
 
-        if(imgFile.exists()){
 
-            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-
-
-            ImageView myImage = (ImageView) findViewById(R.id.image_std);
-
-            myImage.setImageBitmap(myBitmap);
-
-            Log.i("사진", ""+myImage);
-
-        }
-
-//        task = new back();
-//        task.execute(imgUrl+"20160140.jpg");
-
+//        Button check = (Button)findViewById(R.id.btn_check);
+//        check.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if(id == null || id.trim().equals("")){
+//                    Toast.makeText(StudentActivity.this, "출석되었습니다", Toast.LENGTH_SHORT).show();
+//                    idEdit.requestFocus();
+//                    return false;
+//                }
+//                if(pw == null || pw.trim().equals("")){
+//                    Toast.makeText(StudentActivity.this, "출석되지 않았습니다", Toast.LENGTH_SHORT).show();
+//                    pwEdit.requestFocus();
+//                    return false;
+//                }
+//            }
+//        });
+//
     }
 
-//    private class back extends AsyncTask<String, Integer, Bitmap> {
-//        @Override
-//        protected Bitmap doInBackground(String... urls) {
-//            // TODO Auto-generated method stub
-//            try {
-//                URL myFileUrl = new URL(urls[0]);
-//                HttpURLConnection conn = (HttpURLConnection) myFileUrl.openConnection();
-//                conn.setDoInput(true);
-//                conn.connect();
-//                InputStream is = conn.getInputStream();
-//                bmImg = BitmapFactory.decodeStream(is);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//            return bmImg;
-//        }
-//
-//        protected void onPostExecute(Bitmap img) {
-//            imView.setImageBitmap(bmImg);
-//            Log.i("여기", ""+imView);
-//        }
-//
-//    }
 
 }
+

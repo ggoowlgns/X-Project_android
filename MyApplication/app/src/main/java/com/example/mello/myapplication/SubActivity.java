@@ -4,16 +4,23 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import com.example.mello.myapplication.User.UserInfo;
 
 public class SubActivity extends AppCompatActivity {
+    Toolbar signToolbar;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sub);
+
+        signToolbar = (Toolbar)findViewById(R.id.signtool);
+        setSupportActionBar(signToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.back);
 
         Button button = (Button) findViewById(R.id.btn_study);
         button.setOnClickListener(new android.view.View.OnClickListener() {

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:background="@drawable/login">
+    android:background="@drawable/main">
 
     <LinearLayout
         android:layout_width="272dp"
@@ -70,6 +70,17 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/btnRegist"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/etPassword"
+                android:layout_toLeftOf="@+id/btn_login"
+                android:layout_toStartOf="@+id/btn_login"
+                android:layout_weight="1"
+                android:text="회원가입" />
+
+            <Button
                 android:id="@+id/btn_login"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="match_parent"
@@ -80,16 +91,6 @@
                 android:layout_weight="1"
                 android:text="로그인" />
 
-            <Button
-                android:id="@+id/btnRegist"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/etPassword"
-                android:layout_toLeftOf="@+id/btn_login"
-                android:layout_toStartOf="@+id/btn_login"
-                android:layout_weight="1"
-                android:text="회원가입" />
         </LinearLayout>
 
     </LinearLayout>
